@@ -1,13 +1,13 @@
 from datetime import date
 from typing import Optional
 from esmerald import Query, Request
+from typing import Annotated
 
-
-from services.seller.apps.utils.base_response import (
+from utils.base_response import (
     SortEnum,
     get_error_response,
 )
-from services.seller.apps.utils.base_struct import BaseStruct
+from utils.base_struct import BaseStruct
 
 
 class GetSingleParams(BaseStruct):
@@ -29,46 +29,62 @@ class QueryType(QueryTypeWithoutLoadRelated):
 
 
 def query_params(
-    filter_string: Optional[str] = Query(
-        default="",
-        description="Filter through the list of data",
-        title="Filter string",
-    ),
-    page: int = Query(
-        default=1,
-        title="paginator page number",
-        description="paginator page number for listing the result",
-    ),
-    per_page: int = Query(
-        default=10,
-        title="paginator data per page",
-        description="paginator total result per page for listing the result",
-    ),
-    order_by: str = Query(
-        default="-id",
-        title="Order by",
-        description="Order the total result to be returned by database columns",
-    ),
-    sort_by: SortEnum = Query(
-        default=SortEnum.DESC,
-        title="Sort By",
-        description=f"Sort the total result to be returned by either asc or desc, defaults to {SortEnum.DESC}",
-    ),
-    load_related: bool = Query(
-        default=False,
-        title="Load Related data from database",
-        description="Load related data from database particular to each entity, defaults to `False`",
-    ),
-    load_extra: bool = Query(
-        default=False,
-        title="Load everything related to this e.g backward relationship",
-        description="Load extra related data from database particular to each entity, defaults to `False`",
-    ),
-    select: Optional[str] = Query(
-        default="",
-        title="select specific data from database",
-        description="Select specific data from this entity, e.g id, name, email. Default to None(meaning select all), it must be a string separated by comma, like `name, id, created_at, updated_at` if the data does not exist in the entitle table it will be returned",
-    ),
+    filter_string: Annotated[
+        str | None,
+        Query(
+            default="",
+            description="Filter through the list of data",
+            title="Filter string",
+        ),
+    ],
+    page: Annotated[
+        int,
+        Query(
+            default=1,
+            title="paginator page number",
+            description="paginator page number for listing the result",
+        ),
+    ],
+    per_page: Annotated[
+        int,
+        Query(
+            default=10,
+            title="paginator data per page",
+            description="paginator total result per page for listing the result",
+        ),
+    ],
+    order_by: Annotated[
+        str,
+        Query(
+            default="-id",
+            title="Order by",
+            description="Order the total result to be returned by database columns",
+        ),
+    ],
+    sort_by: Annotated[
+        SortEnum,
+        Query(
+            default=SortEnum.DESC,
+            title="Sort By",
+            description=f"Sort the total result to be returned by either asc or desc, defaults to {SortEnum.DESC}",
+        ),
+    ],
+    load_related: Annotated[
+        bool,
+        Query(
+            default=False,
+            title="Load Related data from database",
+            description="Load related data from database particular to each entity, defaults to `False`",
+        ),
+    ],
+    select: Annotated[
+        str | None,
+        Query(
+            default="",
+            title="select specific data from database",
+            description="Select specific data from this entity, e.g id, name, email. Default to None(meaning select all), it must be a string separated by comma, like `name, id, created_at, updated_at` if the data does not exist in the entitle table it will be returned",
+        ),
+    ],
 ):
     return QueryType(
         page=page,
@@ -76,43 +92,60 @@ def query_params(
         order_by=order_by,
         sort_by=sort_by,
         load_related=load_related,
-        load_extra=load_extra,
         select=select,
-        filter_str=filter_string,
+        filter_string=filter_string,
     )
 
 
 def query_params_without_load_related(
-    filter_str: Optional[str] = Query(
-        default="",
-        description="Filter through the list of data",
-        title="Filter string",
-    ),
-    page: int = Query(
-        default=1,
-        title="paginator page number",
-        description="paginator page number for listing the result",
-    ),
-    per_page: int = Query(
-        default=10,
-        title="paginator data per page",
-        description="paginator total result per page for listing the result",
-    ),
-    order_by: str = Query(
-        default="-id",
-        title="Order by",
-        description="Order the total result to be returned by database columns",
-    ),
-    sort_by: SortEnum = Query(
-        default=SortEnum.DESC,
-        title="Sort By",
-        description=f"Sort the total result to be returned by either asc or desc, defaults to {SortEnum.DESC}",
-    ),
-    select: Optional[str] = Query(
-        default="",
-        title="select specific data from database",
-        description="Select specific data from this entity, e.g id, name, email. Default to None(meaning select all), it must be a string separated by comma, like `name, id, created_at, updated_at` if the data does not exist in the entitle table it will be returned",
-    ),
+    filter_string: Annotated[
+        str | None,
+        Query(
+            default="",
+            description="Filter through the list of data",
+            title="Filter string",
+        ),
+    ],
+    page: Annotated[
+        int,
+        Query(
+            default=1,
+            title="paginator page number",
+            description="paginator page number for listing the result",
+        ),
+    ],
+    per_page: Annotated[
+        int,
+        Query(
+            default=10,
+            title="paginator data per page",
+            description="paginator total result per page for listing the result",
+        ),
+    ],
+    order_by: Annotated[
+        str,
+        Query(
+            default="-id",
+            title="Order by",
+            description="Order the total result to be returned by database columns",
+        ),
+    ],
+    sort_by: Annotated[
+        SortEnum,
+        Query(
+            default=SortEnum.DESC,
+            title="Sort By",
+            description=f"Sort the total result to be returned by either asc or desc, defaults to {SortEnum.DESC}",
+        ),
+    ],
+    select: Annotated[
+        str | None,
+        Query(
+            default="",
+            title="select specific data from database",
+            description="Select specific data from this entity, e.g id, name, email. Default to None(meaning select all), it must be a string separated by comma, like `name, id, created_at, updated_at` if the data does not exist in the entitle table it will be returned",
+        ),
+    ],
 ):
     return QueryTypeWithoutLoadRelated(
         page=page,
@@ -120,7 +153,7 @@ def query_params_without_load_related(
         order_by=order_by,
         sort_by=sort_by,
         select=select,
-        filter_str=filter_str,
+        filter_string=filter_string,
     )
 
 

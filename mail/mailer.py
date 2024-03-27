@@ -8,8 +8,8 @@ from email.mime import multipart, text
 from email.utils import formataddr
 from typing import Optional, List, Union
 import pydantic
-from shared_lib.mail import exception
-from shared_lib.mail import template_finder
+from mail import exception
+from mail import template_finder
 
 
 class Mailer(template_finder.MailTemplate):
@@ -36,7 +36,7 @@ class Mailer(template_finder.MailTemplate):
         admin_email: str,
         email_host: str,
         email_server_port: int,
-        template_folder: str = f"{os.getcwd()/'template'}",
+        template_folder: str = f"{os.getcwd()}'/template'",
         sender_brand_name: str | None = "noreply",
         use_google: Optional[bool] = True,
         body: Optional[str] = None,

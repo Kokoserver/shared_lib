@@ -2,7 +2,7 @@ from msgspec import Struct
 
 
 class BaseStruct(Struct):
-    def to_dict(self, exclude: set[str] = None, exclude_none: bool = False):
+    def to_dict(self, exclude: set[str] = set(), exclude_none: bool = False):
         if exclude is None:
             exclude = set()
 

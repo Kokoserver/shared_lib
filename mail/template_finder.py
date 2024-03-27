@@ -1,16 +1,14 @@
+from pathlib import Path
 from typing import Optional
 import jinja2 as jj2
 from jinja2.exceptions import TemplateNotFound
-
-import pydantic
-
-from services.administrators.lib.mail.exception import (
+from mail.exception import (
     EmailTemplateNotFoundError,
 )
 
 
 class MailTemplate:
-    def __init__(self, template_folder: pydantic.DirectoryPath = None) -> None:
+    def __init__(self, template_folder: Path = Path().cwd()) -> None:
         self.template = None
         try:
             self.template_folder = template_folder
@@ -23,8 +21,6 @@ class MailTemplate:
                 f"Template not found in {self.template_folder}"
             ) from e
 
-    def render(self, template_name: str, context: Optional[dict] = None) -> str:
-        if context is None:
-            context = {}
+    def render(self, template_name: str, context: Optional[dict] = {}) -> str:
         self.template = self.env.get_template(template_name)
         return self.template.render(**context)

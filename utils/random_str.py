@@ -4,7 +4,7 @@ from uuid import uuid4
 import slugify
 
 
-def random_generator(size: int = 7, prefix: str = None) -> str:
+def random_generator(size: int = 7, prefix: str = "") -> str:
     token = "".join(
         random.choices(
             string.ascii_uppercase + uuid4().hex.upper() + uuid4().hex.lower(),

@@ -43,10 +43,7 @@ def get_error_response(
     status_code: int = status.HTTP_500_INTERNAL_SERVER_ERROR,
 ) -> HTTPException:
     return HTTPException(
-        detail=dict(
-            message=detail,
-            status_code=status_code,
-        ),
+        detail=detail,
         status_code=status_code,
     )
 
