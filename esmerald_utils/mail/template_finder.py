@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Optional
 import jinja2 as jj2
 from jinja2.exceptions import TemplateNotFound
-from mail.exception import (
+from esmerald_utils.mail.exception import (
     EmailTemplateNotFoundError,
 )
 

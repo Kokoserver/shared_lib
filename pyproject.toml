@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "shared-lib"
+name = "esmerald_utils"
 version = "0.1.0"
 description = ""
 authors = ["Owonikoko Olaoluwa <kokoserver@hotmail.com>"]

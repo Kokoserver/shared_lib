@@ -8,8 +8,8 @@ from email.mime import multipart, text
 from email.utils import formataddr
 from typing import Optional, List, Union
 import pydantic
-from mail import exception
-from mail import template_finder
+from esmerald_utils.mail import exception
+from esmerald_utils.mail import template_finder
 
 
 class Mailer(template_finder.MailTemplate):
