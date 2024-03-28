@@ -10,6 +10,9 @@ dynamic = ['version']
 license = "MIT"
 authors = ["Owonikoko Olaoluwa <kokoserver@hotmail.com>"]
 
+[tool.hatch.version]
+path = "0.0.1"
+
 dependencies = [
     "esmerlad",
     "saffier",
