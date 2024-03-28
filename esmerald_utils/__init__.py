@@ -8,11 +8,11 @@ from esmerald_utils.utils import base_struct as base_struct
 from esmerald_utils.utils import common_validation as common_validation
 from esmerald_utils import mail as mail
 
-__slot__ = (
+__all__ = [
     "BaseRepository",
     "random_str",
     "base_response",
     "base_struct",
     "common_validation",
     "mail",
-)
+]
