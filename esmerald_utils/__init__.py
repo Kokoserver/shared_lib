@@ -1,3 +1,5 @@
+__version__ = "0.0.1"
+
 from esmerald_utils.utils.base_repository import BaseRepository as BaseRepository
 
 from esmerald_utils.utils import random_str as random_str
