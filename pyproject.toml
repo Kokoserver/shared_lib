@@ -23,5 +23,8 @@ dependencies = [
 ]
 
 
+
+[tool.hatch.build.targets.wheel]
+packages = ["/esmerald_utils"]
 [tool.hatch.build.targets.sdist]
 include = ["/esmerald_utils"]
